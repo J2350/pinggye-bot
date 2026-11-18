@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────
+   Fernhollow 디자인 시스템 (밤 꽃 계곡)
+   검은 밤 배경 · 크림색 글씨 · 크림색 알약/원형 버튼 · 은은한 빛 번짐
+   항상 어두운 화면이다. (밝은 모드를 따로 두지 않는다)
+   ───────────────────────────────────────────── */
+:root {
+  --background: #000000;
+  --foreground: #f5efe2; /* 크림 */
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-cream: #f5efe2;
+  --color-ink: #151510;      /* 크림색 버튼 위의 어두운 글씨 */
+  --color-alert: #ff9b9b;    /* 오류 안내: 어두운 배경에서 잘 읽히는 연한 분홍빛 빨강 */
+  /* 한글은 Manrope·Antonio에 글자가 없어서 시스템 한글 글꼴로 이어진다 */
+  --font-sans: var(--font-manrope), "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+  --font-display: var(--font-antonio), "Arial Narrow", "Malgun Gothic", sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 밤하늘의 은은한 빛 번짐(보라·청록·분홍)과, 가장자리를 어둡게 누르는 비네트.
+   내용 뒤에 고정되어 있고 클릭을 가로채지 않는다. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(65% 45% at 50% 108%, rgba(125, 80, 210, 0.3), transparent 70%),
+    radial-gradient(40% 30% at 12% 92%, rgba(40, 200, 190, 0.15), transparent 70%),
+    radial-gradient(36% 26% at 90% 86%, rgba(255, 120, 170, 0.13), transparent 70%),
+    radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.75) 100%);
+}
+
+/* 키보드로 이동할 때 보이는 테두리 */
+:focus-visible {
+  outline: 2px solid var(--color-cream);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: rgba(245, 239, 226, 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}

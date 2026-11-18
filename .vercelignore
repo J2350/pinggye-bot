@@ -1,0 +1,14 @@
+# Vercel에 올릴 때 제외할 것들. (.vercelignore가 있으면 .gitignore 대신 이 목록을 쓰므로 모두 다시 적는다)
+# 비밀 값
+.env
+.env*
+# 설치·빌드 결과 (Vercel이 서버에서 새로 만든다)
+node_modules
+.next
+# 기록·임시 파일
+.git
+.bkit
+.vercel
+trash-can
+*.pem
+*.tsbuildinfo
